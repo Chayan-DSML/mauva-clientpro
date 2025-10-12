@@ -1,6 +1,5 @@
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronDown } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
-import { handlePurchase } from '../utils/purchaseHandler';
 
 interface TrendingReelsPageProps {
   onBack: () => void;
@@ -14,63 +13,55 @@ interface Reel {
   productName: string;
   productDescription: string;
   price: string;
+  whatsappLink: string;
 }
 
-// Mock reels data with product information
 const mockReels: Reel[] = [
   {
     id: '1',
     productId: '1',
     url: 'https://www.instagram.com/reel/DPPEMdEEtz0/',
     embedUrl: 'https://www.instagram.com/reel/DPPEMdEEtz0/embed',
-    productName: 'Mountain Explorer Bike',
-    productDescription: 'High-performance mountain bike perfect for trail adventures and challenging terrains.',
-    price: '₹2,499'
+    productName: 'Sage Green Tunic Set',
+    productDescription: 'A beautiful sage green tunic and dupatta set, perfect for any occasion.',
+    price: '₹2,499',
+    whatsappLink: 'https://wa.me/1234567890?text=I%27m%20interested%20in%20the%20Sage%20Green%20Tunic%20Set',
   },
   {
     id: '2',
-    productId: '3',
-    url: 'https://www.instagram.com/reel/DPZD7DUgUta/',
-    embedUrl: 'https://www.instagram.com/reel/DPZD7DUgUta/embed',
-    productName: 'Luxury Sedan',
-    productDescription: 'Premium luxury sedan with advanced features and exceptional comfort.',
-    price: '₹45,999'
+    productId: '2',
+    url: 'https://www.instagram.com/reel/C8N_eZ6vJef/',
+    embedUrl: 'https://www.instagram.com/reel/C8N_eZ6vJef/embed',
+    productName: 'Elegant Pink Gown',
+    productDescription: 'A stunning pink gown for special events, with intricate details.',
+    price: '₹5,999',
+    whatsappLink: 'https://wa.me/1234567890?text=I%27m%20interested%20in%20the%20Elegant%20Pink%20Gown',
   },
   {
     id: '3',
-    productId: '9',
-    url: 'https://www.instagram.com/reel/DPl0YRvgecM/',
-    embedUrl: 'https://www.instagram.com/reel/DPl0YRvgecM/embed',
-    productName: 'City Transit Bus',
-    productDescription: 'Modern public transportation bus with eco-friendly features and passenger comfort.',
-    price: '₹125,999'
-  }
+    productId: '3',
+    url: 'https://www.instagram.com/reel/C8JQfX7v_qg/',
+    embedUrl: 'https://www.instagram.com/reel/C8JQfX7v_qg/embed',
+    productName: 'Classic Blue Lehenga',
+    productDescription: 'A timeless blue lehenga choli with traditional embroidery.',
+    price: '₹8,999',
+    whatsappLink: 'https://wa.me/1234567890?text=I%27m%20interested%20in%20the%20Classic%20Blue%20Lehenga',
+  },
 ];
 
 export function TrendingReelsPage({ onBack }: TrendingReelsPageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      const scrollTop = container.scrollTop;
-      const windowHeight = window.innerHeight;
-      const index = Math.round(scrollTop / windowHeight);
-      setCurrentIndex(index);
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Load Instagram embed script
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://www.instagram.com/embed.js';
     script.async = true;
+    script.onload = () => {
+      if ((window as any).instgrm) {
+        (window as any).instgrm.Embeds.process();
+      }
+    };
     document.body.appendChild(script);
 
     return () => {
@@ -80,71 +71,68 @@ export function TrendingReelsPage({ onBack }: TrendingReelsPageProps) {
     };
   }, []);
 
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (container) {
+      const isAtBottom = container.scrollHeight - container.scrollTop === container.clientHeight;
+      setShowScrollIndicator(!isAtBottom);
+      
+      const reels = container.querySelectorAll('.reel-item');
+      const halfway = container.scrollTop + container.clientHeight / 2;
+
+      reels.forEach(reel => {
+        const iframe = reel.querySelector('iframe');
+        if (iframe) {
+          if (reel.offsetTop <= halfway && reel.offsetTop + reel.clientHeight > halfway) {
+            iframe.contentWindow?.postMessage('play', '*');
+          } else {
+            iframe.contentWindow?.postMessage('pause', '*');
+          }
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    container?.addEventListener('scroll', handleScroll);
+    return () => container?.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="h-screen bg-background overflow-hidden">
-      {/* Header with Back Button */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-primary/90 to-transparent px-4 py-4 flex items-center gap-3">
-        <button
-          onClick={onBack}
-          className="p-2 hover:bg-white/10 rounded-full transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5 text-white" />
+    <div className="h-screen bg-background text-foreground flex flex-col relative">
+      <div className="absolute top-0 left-0 z-20 p-4">
+        <button onClick={onBack} className="p-2 rounded-full bg-primary/20 hover:bg-primary/40 transition-colors">
+          <ArrowLeft className="w-6 h-6" />
         </button>
-        <h1 className="text-white">Trending Products</h1>
       </div>
 
-      {/* Reels Container */}
-      <div
-        ref={containerRef}
-        className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {mockReels.map((reel, index) => (
-          <div
-            key={reel.id}
-            className="h-screen w-full snap-start snap-always flex items-center justify-center relative bg-background"
-          >
-            {/* Instagram Reel Embed */}
-            <div className="w-full h-full flex items-center justify-center p-4 pt-20 pb-32">
-              <blockquote
-                className="instagram-media"
-                data-instgrm-permalink={reel.url}
-                data-instgrm-version="14"
-                style={{
-                  background: '#FFF',
-                  border: 0,
-                  borderRadius: '3px',
-                  boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
-                  margin: '1px',
-                  maxWidth: '540px',
-                  minWidth: '326px',
-                  padding: 0,
-                  width: 'calc(100% - 2px)'
-                }}
-              >
-                <a href={reel.url} target="_blank" rel="noopener noreferrer">
-                  View this post on Instagram
-                </a>
-              </blockquote>
-            </div>
+      <div ref={containerRef} className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth">
+        {mockReels.map((reel) => (
+          <div key={reel.id} className="h-full w-full snap-start flex items-center justify-center reel-item">
+            <div className="flex flex-col md:flex-row items-center justify-center w-full h-full p-4 md:p-8 gap-8">
+              <div className="w-full md:w-1/2 h-full flex items-center justify-center">
+                <blockquote
+                  className="instagram-media"
+                  data-instgrm-permalink={reel.url}
+                  data-instgrm-version="14"
+                  style={{ width: '100%', height: '100%' }}
+                ></blockquote>
+              </div>
 
-            {/* Product Information Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/95 via-primary/90 to-transparent p-6 pb-8">
-              <div className="max-w-lg mx-auto space-y-3">
-                <h2 className="text-white">{reel.productName}</h2>
-                <p className="text-white/90 text-sm">{reel.productDescription}</p>
+              <div className="w-full md:w-1/2 lg:w-1/3 bg-primary/90 text-primary-foreground p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+                <h2 className="text-2xl font-bold mb-2">{reel.productName}</h2>
+                <p className="text-primary-foreground/80 mb-4">{reel.productDescription}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl text-white">{reel.price}</span>
-                  <button 
-                    onClick={() => handlePurchase({
-                      productId: reel.productId,
-                      productName: reel.productName,
-                      price: reel.price
-                    })}
-                    className="px-6 py-3 bg-white text-primary rounded-md hover:bg-white/90 transition-colors shadow-lg"
+                  <span className="text-3xl font-extrabold">{reel.price}</span>
+                  <a
+                    href={reel.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-primary-foreground text-primary font-bold rounded-lg hover:bg-primary-foreground/90 transition-colors shadow-md"
                   >
                     Buy Now
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -152,17 +140,11 @@ export function TrendingReelsPage({ onBack }: TrendingReelsPageProps) {
         ))}
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-2">
-        {mockReels.map((_, index) => (
-          <div
-            key={index}
-            className={`w-1.5 h-1.5 rounded-full transition-all ${
-              index === currentIndex ? 'bg-white h-8' : 'bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
+      {showScrollIndicator && (
+        <div className="absolute bottom-4 right-1/2 translate-x-1/2 z-20 animate-bounce">
+          <ChevronDown className="w-8 h-8" />
+        </div>
+      )}
     </div>
   );
 }

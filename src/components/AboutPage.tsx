@@ -1,5 +1,7 @@
+
+import React from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import logo from '@/assets/mauva-logo.png';
 
 interface AboutPageProps {
   onBack: () => void;
@@ -7,55 +9,51 @@ interface AboutPageProps {
 
 export function AboutPage({ onBack }: AboutPageProps) {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header with Back Button */}
-      <div className="bg-card px-4 py-4 border-b border-border flex items-center gap-3">
+    <div className="bg-white">
+       <div className="sticky top-0 z-10 bg-white px-4 py-4 border-b border-gray-200 flex items-center gap-3 shadow-sm">
         <button
           onClick={onBack}
-          className="p-2 hover:bg-accent rounded-full transition-colors"
+          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+          aria-label="Go back"
         >
-          <ArrowLeft className="w-5 h-5 text-primary" />
+          <ArrowLeft className="w-5 h-5 text-gray-700" />
         </button>
-        <b><h1 className="text-primary">About Us</h1></b>
+        <h1 className="text-xl font-semibold text-gray-900">About Us</h1>
       </div>
-
-      {/* Content */}
-      <div className="p-4 pb-24 space-y-4">
-        {/* Hero Image */}
-        <div className="bg-card rounded-lg border border-border overflow-hidden shadow-sm">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1693322845412-b9d7a5e04bd9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwYnVpbGRpbmclMjBleHRlcmlvcnxlbnwxfHx8fDE3NTk5NDgyMDh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-            alt="Company Building"
-            className="w-full h-48 object-cover"
-          />
-        </div>
-
-        {/* Story Section with Text */}
-        <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
-          <b><h2 className="mb-4 text-primary">Our Story</h2></b>
-          <p className="text-foreground leading-relaxed">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center">
+          <div className="inline-block border border-pink-300 rounded-lg p-2 mb-4">
+            <div className="bg-gray-100 px-4 py-2 rounded">
+              <img src={logo} alt="MAUVA Logo" className="w-32 h-32" />
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900">
+            About <span className="text-pink-600">MAUVA</span>
+          </h1>
+          <p className="mt-2 text-lg text-gray-500">
+            DRESS. EXPRESS. IMPRESS.
           </p>
         </div>
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-card rounded-lg border border-border overflow-hidden shadow-sm">
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBzcGFjZXxlbnwxfHx8fDE3NTk5MjcyNzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Our Workspace"
-              className="w-full h-32 object-cover"
-            />
+        <hr className="my-12 border-gray-200" />
+
+        <div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
+          <div className="text-gray-600 text-lg space-y-6">
+            <p>
+              We are wholesalers and manufacturers of kurtis, readymades and unstitched dress materials. Our objective is to provide consumers with the best quality products and most trending designs at manufacturing rates.
+            </p>
           </div>
-          <div className="bg-card rounded-lg border border-border overflow-hidden shadow-sm">
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1728933102332-a4f1a281a621?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwd29ya3Nob3AlMjBidXNpbmVzc3xlbnwxfHx8fDE3NTk5NDgyMDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Our Team"
-              className="w-full h-32 object-cover"
-            />
-          </div>
+        </div>
+
+        <div className="mt-12 bg-pink-50 border-l-4 border-pink-500 p-6 rounded-r-lg">
+          <p className="text-lg text-gray-800">
+            <span className="font-bold text-pink-600">Core Value:</span> Quality and customer service is our top priority—more important than selling a product.
+          </p>
         </div>
       </div>
     </div>
   );
 }
+
+export default AboutPage;

@@ -1,4 +1,4 @@
-import { ArrowLeft, MapPin, Mail, Phone, Store } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Store } from 'lucide-react';
 
 interface ContactPageProps {
   onBack: () => void;
@@ -9,7 +9,6 @@ export function ContactPage({ onBack }: ContactPageProps) {
   const contactInfo = {
     shopName: 'mauva.by.mmd',
     address: '#14/15, S.S. Jain Market, M.P. Lane, Chickpet, Bengaluru, India - 560053',
-    email: 'mauvabymmd@gmail.com',
     phones: [
       { number: '+918197697480', display: '+91 8197697480', label: 'Retail' },
       { number: '+917676881468', display: '+91 7676881468', label: 'Wholesale' }
@@ -54,24 +53,6 @@ export function ContactPage({ onBack }: ContactPageProps) {
             <div className="flex-1">
               <h3 className="mb-1">Address</h3>
               <p className="text-muted-foreground">{contactInfo.address}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Email */}
-        <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-accent rounded-full">
-              <Mail className="w-6 h-6 text-secondary" />
-            </div>
-            <div className="flex-1">
-              <h3 className="mb-1">Email</h3>
-              <a
-                href={`mailto:${contactInfo.email}`}
-                className="text-primary hover:underline"
-              >
-                {contactInfo.email}
-              </a>
             </div>
           </div>
         </div>
