@@ -49,6 +49,9 @@ const allCategories: Category[] = [
     },
     { id: 'jewelry', name: 'Jewelry', image: 'https://images.unsplash.com/photo-1611652033923-a5b4f5a3a7b4?w=400', startDate: '2025-10-11', endDate: '2025-10-13' },
     { id: 'accessories', name: 'Accessories', image: 'https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=400' },
+    { id: 'accessories', name: 'Accessories', image: 'https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=400' },
+    { id: 'accessories', name: 'Accessories', image: 'https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=400' },
+    { id: 'accessories', name: 'Accessories', image: 'https://images.unsplash.com/photo-1588702547919-26089e690ecc?w=400' },
 ];
 
 export function HomePage({ onCategorySelect }: HomePageProps) {
