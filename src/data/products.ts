@@ -20,7 +20,7 @@ export const allProducts: Product[] = [
       'https://lh3.googleusercontent.com/d/1dfzEtO9-DbYSKVTbAi7b1hddt8d9kqYk'
     ],
     price: '₹2,499',
-    categories: ['bikes'],
+    categories: ['bikes', 'ethnic'],
     whatsappLink: 'https://wa.me/p/7092688257499544/919986474527'
   },
   {
@@ -139,7 +139,7 @@ export const allProducts: Product[] = [
       'https://images.unsplash.com/photo-1742069207625-00b749c8edb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwYnVzJTIwcHVibGljJTIwdHJhbnNwb3J0fGVufDF8fHx8MTc1OTgyNzk3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       'https://images.unsplash.com/photo-1742069207625-00b749c8edb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwYnVzJTIwcHVibGljJTIwdHJhbnNwb3J0fGVufDF8fHx8MTc1OTgyNzk3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       'https://images.unsplash.com/photo-1742069207625-00b749c8edb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwYnVzJTIwcHVibGljJTIwdHJhbnNwb3J0fGVufDF8fHx8MTc1OTgyNzk3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      'https://images.unsplash.com/photo-1742069207625-00b749c8edb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwYnVzJTIwcHVibGljJTIwdHJhbnNwb3J0fGVufDF8fHx8MTc1OTgyNzk3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
+      'https://images.unsplash.com/photo-1742069207625-00b749c8edb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwYnVzJTIwcHVibGljJTIwdHJhbnNwb3J0fGVufDF8fHx8MTc1OTgyNzk3Mnww&ixlib.rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
     ],
     price: '₹95,999',
     categories: ['buses'],

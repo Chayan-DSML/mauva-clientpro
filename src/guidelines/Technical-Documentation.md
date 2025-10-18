@@ -625,5 +625,5 @@ useEffect(() => {
 
 ---
 
-*Last Updated: January 2025*
-*Maintained by: Development Team*
+*Last Updated: 18th October 2025*
+*Maintained by: Chayan Agarwal*

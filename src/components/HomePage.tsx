@@ -2,6 +2,7 @@ import { ProductCarousel } from './ProductCarousel';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { allProducts } from '../data/products';
 import { useEffect, useState } from 'react';
+import { HamburgerMenu } from './HamburgerMenu';
 
 interface Category {
   id: string;
@@ -12,7 +13,7 @@ interface Category {
 }
 
 interface HomePageProps {
-  onCategorySelect: (categoryId: string) => void;
+  onCategorySelect: (categoryId: string, path: string[]) => void;
   onNavigate: (page: 'home' | 'about' | 'trending' | 'contact') => void;
 }
 
@@ -91,8 +92,9 @@ export function HomePage({ onCategorySelect }: HomePageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="bg-card px-4 py-6 border-b border-border">
-        <b><h1 className="text-center text-primary">mauva.by.mmd</h1></b>
+      <div className="bg-card px-4 py-6 border-b border-border flex items-center">
+        <HamburgerMenu onCategorySelect={onCategorySelect} />
+        <b className="flex-grow"><h1 className="text-center text-primary">mauva.by.mmd</h1></b>
       </div>
 
       <div className="bg-card py-4 border-b border-border overflow-hidden">
@@ -100,7 +102,7 @@ export function HomePage({ onCategorySelect }: HomePageProps) {
           {categories.map((category) => (
             <div key={category.id} className="flex flex-col items-center gap-2 flex-shrink-0">
               <button
-                onClick={() => onCategorySelect(category.id)}
+                onClick={() => onCategorySelect(category.id, [category.name])}
                 className="w-16 h-16 rounded-full border-2 border-secondary/40 flex items-center justify-center overflow-hidden bg-accent hover:border-primary transition-colors p-0"
               >
                 <ImageWithFallback 

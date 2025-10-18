@@ -671,5 +671,6 @@ const WHATSAPP_NUMBER = '918197697480';  // No + or spaces
 
 ---
 
-*Last Updated: January 2025*
+*Last Updated: 18th October 2025*
 *Version: 2.0 - Added WhatsApp integration and Google Drive image support*
+*Maintained by: Chayan Agarwal*
