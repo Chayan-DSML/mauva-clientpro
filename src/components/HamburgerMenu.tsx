@@ -57,12 +57,21 @@ const menuItems = [
 
 const toCategoryId = (name: string) => name.toLowerCase().replace(/ /g, '-');
 
+function toTitleCase(str: string): string {
+  if (str.toUpperCase() === str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
+  return str;
+}
+
 export function HamburgerMenu({ onCategorySelect }: HamburgerMenuProps) {
   const [open, setOpen] = useState(false);
 
   const handleSubItemClick = (mainCategory: string, subItem: string) => {
     const categoryId = toCategoryId(subItem);
-    onCategorySelect(categoryId, [mainCategory, subItem]);
+    // Convert main category to title case for the breadcrumb
+    const displayCategory = toTitleCase(mainCategory);
+    onCategorySelect(categoryId, [displayCategory, subItem]);
     setOpen(false);
   };
 
