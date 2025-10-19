@@ -31,6 +31,7 @@ Please provide more details about availability and delivery.`;
  * Handles the purchase flow by redirecting to WhatsApp
  */
 export function handlePurchase(productInfo: PurchaseInfo) {
+  alert('Buy Now button clicked!'); // Added for debugging
   const message = generateWhatsAppMessage(productInfo);
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
   

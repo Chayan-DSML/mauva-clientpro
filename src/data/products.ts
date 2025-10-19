@@ -5,7 +5,6 @@ export interface Product {
   images: string[]; // Changed from imageUrl to images array (max 7)
   price: string;
   categories: string[]; // Product can belong to multiple categories
-  whatsappLink: string;
 }
 
 // All products in one central location
@@ -21,7 +20,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹2,499',
     categories: ['bikes', 'ethnic'],
-    whatsappLink: 'https://wa.me/p/7092688257499544/919986474527'
   },
   {
     id: '2',
@@ -33,7 +31,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹3,299',
     categories: ['bikes'],
-    whatsappLink: '#'
   },
   {
     id: '3',
@@ -42,12 +39,11 @@ export const allProducts: Product[] = [
     images: [
       'https://lh3.googleusercontent.com/d/1dfzEtO9-DbYSKVTbAi7b1hddt8d9kqYkl',
       'https://lh3.googleusercontent.com/d/1dfzEtO9-DbYSKVTbAi7b1hddt8d9kqYkl',
-      'https://lh3.googleusercontent.com/d/1dfzEtO9-DbYSKVTbAi7b1hddt8d9kqYkl',
+      'https.googleusercontent.com/d/1dfzEtO9-DbYSKVTbAi7b1hddt8d9kqYkl',
       'https://lh3.googleusercontent.com/d/1dfzEtO9-DbYSKVTbAi7b1hddt8d9kqYkl'
     ],
     price: '₹45,999',
     categories: ['cars'],
-    whatsappLink: '#'
   },
   {
     id: '4',
@@ -62,7 +58,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹52,999',
     categories: ['cars'],
-    whatsappLink: '#'
   },
   {
     id: '5',
@@ -74,7 +69,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹399',
     categories: ['cycle'],
-    whatsappLink: '#'
   },
   {
     id: '6',
@@ -87,7 +81,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹499',
     categories: ['cycle'],
-    whatsappLink: '#'
   },
   {
     id: '7',
@@ -104,7 +97,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹89,999',
     categories: ['truck'],
-    whatsappLink: '#'
   },
   {
     id: '8',
@@ -116,7 +108,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹65,999',
     categories: ['truck'],
-    whatsappLink: '#'
   },
   {
     id: '9',
@@ -129,7 +120,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹125,999',
     categories: ['buses'],
-    whatsappLink: '#'
   },
   {
     id: '10',
@@ -143,7 +133,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹95,999',
     categories: ['buses'],
-    whatsappLink: '#'
   },
   // Example: Product that appears in multiple categories
   {
@@ -156,7 +145,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹899',
     categories: ['truck', 'buses'], // This product appears in both Trucks and Buses
-    whatsappLink: '#'
   },
   {
     id: '12',
@@ -169,7 +157,6 @@ export const allProducts: Product[] = [
     ],
     price: '₹149',
     categories: ['bikes', 'cycle'], // This product appears in both Bikes and Cycles
-    whatsappLink: '#'
   }
 ];
 

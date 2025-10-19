@@ -3,6 +3,8 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { allProducts } from '../data/products';
 import { useEffect, useState } from 'react';
 import { HamburgerMenu } from './HamburgerMenu';
+import { Button } from './ui/button';
+import { handlePurchase } from '../utils/purchaseHandler';
 
 interface Category {
   id: string;
@@ -126,14 +128,7 @@ export function HomePage({ onCategorySelect }: HomePageProps) {
               <p className="text-muted-foreground mb-3">{product.description}</p>
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold text-primary">{product.price}</span>
-                <a 
-                  href={product.whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-                >
-                  Buy Now
-                </a>
+                <Button onClick={() => handlePurchase({ productId: product.id, productName: product.name, price: product.price })}>Buy Now</Button>
               </div>
             </div>
           </div>

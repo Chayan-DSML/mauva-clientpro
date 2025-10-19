@@ -1,5 +1,7 @@
 import { ArrowLeft, ChevronDown } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
+import { Button } from './ui/button';
+import { handlePurchase } from '../utils/purchaseHandler';
 
 interface TrendingReelsPageProps {
   onBack: () => void;
@@ -13,7 +15,6 @@ interface Reel {
   productName: string;
   productDescription: string;
   price: string;
-  whatsappLink: string;
 }
 
 const mockReels: Reel[] = [
@@ -25,7 +26,6 @@ const mockReels: Reel[] = [
     productName: 'Sage Green Tunic Set',
     productDescription: 'A beautiful sage green tunic and dupatta set, perfect for any occasion.',
     price: '₹2,499',
-    whatsappLink: 'https://wa.me/1234567890?text=I%27m%20interested%20in%20the%20Sage%20Green%20Tunic%20Set',
   },
   {
     id: '2',
@@ -35,7 +35,6 @@ const mockReels: Reel[] = [
     productName: 'Elegant Pink Gown',
     productDescription: 'A stunning pink gown for special events, with intricate details.',
     price: '₹5,999',
-    whatsappLink: 'https://wa.me/1234567890?text=I%27m%20interested%20in%20the%20Elegant%20Pink%20Gown',
   },
   {
     id: '3',
@@ -45,7 +44,6 @@ const mockReels: Reel[] = [
     productName: 'Classic Blue Lehenga',
     productDescription: 'A timeless blue lehenga choli with traditional embroidery.',
     price: '₹8,999',
-    whatsappLink: 'https://wa.me/1234567890?text=I%27m%20interested%20in%20the%20Classic%20Blue%20Lehenga',
   },
 ];
 
@@ -125,14 +123,7 @@ export function TrendingReelsPage({ onBack }: TrendingReelsPageProps) {
                 <p className="text-primary-foreground/80 mb-4">{reel.productDescription}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-3xl font-extrabold">{reel.price}</span>
-                  <a
-                    href={reel.whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-6 py-3 bg-primary-foreground text-primary font-bold rounded-lg hover:bg-primary-foreground/90 transition-colors shadow-md"
-                  >
-                    Buy Now
-                  </a>
+                  <Button onClick={() => handlePurchase({ productId: reel.productId, productName: reel.productName, price: reel.price })}>Buy Now</Button>
                 </div>
               </div>
             </div>
