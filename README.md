@@ -1,5 +1,5 @@
 
-  # Mauva E-commerce Website
+  # mauva-by-mmd/mauva-frontend-web
 
   ## Running the code
 
